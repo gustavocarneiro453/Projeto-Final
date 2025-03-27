@@ -1,2 +1,19 @@
-<h3>🪪 Formulário de CNH</h3>
-<p>Aqui vai o formulário para preencher a CNH.</p>
+<h2>🪪 Formulário de CNH</h2>
+<form (ngSubmit)="enviar()" #form="ngForm">
+  <input [(ngModel)]="cnh.nome" name="nome" placeholder="Nome completo" required />
+  <input [(ngModel)]="cnh.numero" name="numero" placeholder="Número da CNH" required />
+  <input [(ngModel)]="cnh.dataNascimento" name="dataNascimento" type="date" required />
+  <input [(ngModel)]="cnh.sexo" name="sexo" placeholder="Sexo" />
+  <input [(ngModel)]="cnh.naturalidade" name="naturalidade" placeholder="Naturalidade" />
+  <input [(ngModel)]="cnh.endereco" name="endereco" placeholder="Endereço" />
+  <input [(ngModel)]="cnh.cpf" name="cpf" placeholder="CPF" />
+  <input [(ngModel)]="cnh.dataExpedicao" name="dataExpedicao" type="date" />
+  <input [(ngModel)]="cnh.validade" name="validade" type="date" />
+  <input [(ngModel)]="cnh.categoria" name="categoria" placeholder="Categoria (A, B...)" />
+  <input [(ngModel)]="cnh.tipoHabilitacao" name="tipoHabilitacao" placeholder="Tipo de habilitação" />
+  <input [(ngModel)]="cnh.numeroRegistro" name="numeroRegistro" placeholder="Número de registro" />
+  <textarea [(ngModel)]="cnh.exames" name="exames" placeholder="Exames realizados"></textarea>
+  <textarea [(ngModel)]="cnh.observacoes" name="observacoes" placeholder="Observações adicionais"></textarea>
+
+  <button [disabled]="!form.valid">Enviar</button>
+</form>

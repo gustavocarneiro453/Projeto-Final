@@ -1,2 +1,14 @@
-<h3>❤️ Formulário de Saúde</h3>
-<p>Aqui vai o formulário da carteira de saúde.</p>
+<h2>❤️ Formulário da Carteira de Saúde</h2>
+<form (ngSubmit)="enviar()" #form="ngForm">
+  <input [(ngModel)]="saude.nome" name="nome" placeholder="Nome completo" required />
+  <input [(ngModel)]="saude.numeroSUS" name="numeroSUS" placeholder="Número do Cartão SUS" required />
+  <input [(ngModel)]="saude.dataNascimento" name="dataNascimento" type="date" />
+  <input [(ngModel)]="saude.sexo" name="sexo" placeholder="Sexo" />
+  <input [(ngModel)]="saude.endereco" name="endereco" placeholder="Endereço completo" />
+  <input [(ngModel)]="saude.cpf" name="cpf" placeholder="CPF" />
+  <input [(ngModel)]="saude.nomePais" name="nomePais" placeholder="Nome dos pais" />
+  <textarea [(ngModel)]="saude.condicoes" name="condicoes" placeholder="Condições preexistentes"></textarea>
+  <input [(ngModel)]="saude.planoSaude" name="planoSaude" placeholder="Plano de saúde (se aplicável)" />
+
+  <button [disabled]="!form.valid">Enviar</button>
+</form>

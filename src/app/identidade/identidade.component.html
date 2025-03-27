@@ -1,2 +1,16 @@
-<h3>🆔 Formulário de Identidade</h3>
-<p>Aqui vai o formulário da identidade.</p>
+<h2>🆔 Formulário de Identidade</h2>
+<form (ngSubmit)="enviar()" #form="ngForm">
+  <input [(ngModel)]="rg.nome" name="nome" placeholder="Nome completo" required />
+  <input [(ngModel)]="rg.numero" name="numero" placeholder="Número do RG" required />
+  <input [(ngModel)]="rg.dataNascimento" name="dataNascimento" type="date" />
+  <input [(ngModel)]="rg.sexo" name="sexo" placeholder="Sexo" />
+  <input [(ngModel)]="rg.naturalidade" name="naturalidade" placeholder="Naturalidade" />
+  <input [(ngModel)]="rg.filiacao" name="filiacao" placeholder="Filiação (pais)" />
+  <input [(ngModel)]="rg.cpf" name="cpf" placeholder="CPF" />
+  <input [(ngModel)]="rg.estado" name="estado" placeholder="Estado de expedição" />
+  <input [(ngModel)]="rg.assinatura" name="assinatura" placeholder="Assinatura do titular" />
+  <input [(ngModel)]="rg.dataEmissao" name="dataEmissao" type="date" />
+  <input [(ngModel)]="rg.orgaoEmissor" name="orgaoEmissor" placeholder="Órgão emissor" />
+
+  <button [disabled]="!form.valid">Enviar</button>
+</form>
