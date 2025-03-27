@@ -1,19 +1,12 @@
 <div class="container">
-  <h2>📄 Meus Documentos</h2>
+  <h2>📄 Escolha o tipo de documento</h2>
 
-  <label for="filtro">Filtrar por tipo:</label>
-  <select [(ngModel)]="filtroSelecionado" id="filtro" class="form-select mb-3">
+  <select [(ngModel)]="filtroSelecionado" class="form-select mb-3">
+    <option value="" disabled selected>-- Selecione --</option>
     <option *ngFor="let tipo of tipos" [value]="tipo">{{ tipo }}</option>
   </select>
 
-  <div *ngIf="documentosFiltrados.length === 0">
-    <p>Nenhum documento encontrado para o filtro selecionado.</p>
-  </div>
-
-  <ul class="list-group">
-    <li class="list-group-item" *ngFor="let doc of documentosFiltrados">
-      <strong>{{ doc.nome }}</strong><br>
-      <small>{{ doc.descricao }}</small>
-    </li>
-  </ul>
+  <button class="btn btn-primary" [disabled]="!filtroSelecionado" (click)="irParaFormulario()">
+    Continuar
+  </button>
 </div>

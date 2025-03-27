@@ -1,12 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
-interface Documento {
-  tipo: string;
-  nome: string;
-  descricao: string;
-}
+import { Router } from '@angular/router'; 
 
 @Component({
   selector: 'app-pag1',
@@ -16,20 +11,18 @@ interface Documento {
   styleUrls: ['./pag1.component.css']
 })
 export class Pag1Component {
-  tipos = ['Todos', 'CNH', 'Identidade', 'Saúde'];
-  filtroSelecionado: string = 'Todos';
+  tipos = ['CNH', 'Identidade', 'Saúde'];
+  filtroSelecionado: string = '';
 
-  documentos: Documento[] = [
-    { tipo: 'CNH', nome: 'CNH João', descricao: 'Carteira de motorista de João' },
-    { tipo: 'Identidade', nome: 'RG Maria', descricao: 'Documento de identidade da Maria' },
-    { tipo: 'Saúde', nome: 'Cartão SUS Pedro', descricao: 'Carteira de saúde do Pedro' },
-    { tipo: 'CNH', nome: 'CNH Ana', descricao: 'Carteira de motorista da Ana' },
-  ];
+  constructor(private router: Router) {}
 
-  get documentosFiltrados(): Documento[] {
-    if (this.filtroSelecionado === 'Todos') {
-      return this.documentos;
+  irParaFormulario() {
+    if (this.filtroSelecionado === 'CNH') {
+      this.router.navigate(['/cnh']);
+    } else if (this.filtroSelecionado === 'Identidade') {
+      this.router.navigate(['/identidade']);
+    } else if (this.filtroSelecionado === 'Saúde') {
+      this.router.navigate(['/saude']);
     }
-    return this.documentos.filter(doc => doc.tipo === this.filtroSelecionado);
   }
 }
