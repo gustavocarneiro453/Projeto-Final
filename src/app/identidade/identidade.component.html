@@ -1,4 +1,5 @@
-<h2>🆔 Formulário de Identidade</h2>
+<h2 class = "title">🆔 Formulário de Identidade</h2>
+<div class="form-wrapper">
 <form (ngSubmit)="enviar()" #form="ngForm">
   <input [(ngModel)]="rg.nome" name="nome" placeholder="Nome completo" required />
   <input [(ngModel)]="rg.numero" name="numero" placeholder="Número do RG" required />
@@ -14,3 +15,4 @@
 
   <button [disabled]="!form.valid">Enviar</button>
 </form>
+</div>

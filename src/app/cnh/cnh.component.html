@@ -1,4 +1,5 @@
-<h2>🪪 Formulário de CNH</h2>
+<h2 class = "title">🪪 Formulário de CNH</h2>
+<div class="form-wrapper">
 <form (ngSubmit)="enviar()" #form="ngForm">
   <input [(ngModel)]="cnh.nome" name="nome" placeholder="Nome completo" required />
   <input [(ngModel)]="cnh.numero" name="numero" placeholder="Número da CNH" required />
@@ -17,3 +18,4 @@
 
   <button [disabled]="!form.valid">Enviar</button>
 </form>
+</div>

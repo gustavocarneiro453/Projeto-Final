@@ -1,4 +1,5 @@
-<h2>❤️ Formulário da Carteira de Saúde</h2>
+<h2 class = "title">❤️ Formulário da Carteira de Saúde</h2>
+<div class="form-wrapper">
 <form (ngSubmit)="enviar()" #form="ngForm">
   <input [(ngModel)]="saude.nome" name="nome" placeholder="Nome completo" required />
   <input [(ngModel)]="saude.numeroSUS" name="numeroSUS" placeholder="Número do Cartão SUS" required />
@@ -12,3 +13,4 @@
 
   <button [disabled]="!form.valid">Enviar</button>
 </form>
+</div>
