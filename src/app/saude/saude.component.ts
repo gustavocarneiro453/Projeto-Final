@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { DocumentoStorageService } from '../services/documento-storage.service';
 
 @Component({
   selector: 'app-saude',
@@ -9,6 +10,8 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './saude.component.html'
 })
 export class SaudeComponent {
+  constructor(private storage: DocumentoStorageService) {}
+
   saude = {
     nome: '',
     numeroSUS: '',
@@ -22,7 +25,8 @@ export class SaudeComponent {
   };
 
   enviar() {
-    console.log('Dados de Saúde:', this.saude);
-    alert('Carteira de Saúde enviada com sucesso!');
+    this.storage.salvarDocumento('saude', this.saude);
+    alert('Carteira de saúde salva com sucesso!');
+    this.saude = {} as any;
   }
 }

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { DocumentoStorageService } from '../services/documento-storage.service';
 
 @Component({
   selector: 'app-identidade',
@@ -9,6 +10,8 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './identidade.component.html'
 })
 export class IdentidadeComponent {
+  constructor(private storage: DocumentoStorageService) {}
+
   rg = {
     nome: '',
     numero: '',
@@ -24,7 +27,8 @@ export class IdentidadeComponent {
   };
 
   enviar() {
-    console.log('Dados do RG:', this.rg);
-    alert('Identidade enviada com sucesso!');
+    this.storage.salvarDocumento('identidade', this.rg);
+    alert('Identidade salva com sucesso!');
+    this.rg = {} as any;
   }
 }

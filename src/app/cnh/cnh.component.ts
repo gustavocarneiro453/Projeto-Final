@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { DocumentoStorageService } from '../services/documento-storage.service'; // caminho correto
 
 @Component({
   selector: 'app-cnh',
@@ -9,6 +10,8 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './cnh.component.html'
 })
 export class CnhComponent {
+  constructor(private storage: DocumentoStorageService) {}
+
   cnh = {
     nome: '',
     numero: '',
@@ -27,7 +30,8 @@ export class CnhComponent {
   };
 
   enviar() {
-    console.log('Dados da CNH:', this.cnh);
-    alert('CNH enviada com sucesso!');
+    this.storage.salvarDocumento('cnh', this.cnh);
+    alert('CNH salva com sucesso!');
+    this.cnh = {} as any; // limpa o formulário
   }
 }
