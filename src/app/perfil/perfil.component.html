@@ -1,0 +1,31 @@
+<div class="perfil-wrapper">
+  <h2>👤 Meu Perfil</h2>
+
+  <button (click)="exportarJson()">📥 Exportar como JSON</button>
+
+  <section *ngIf="documentos.cnh.length > 0">
+    <h3>🪪 CNH(s)</h3>
+    <div class="card" *ngFor="let item of documentos.cnh">
+      <p><strong>Nome:</strong> {{ item.nome }}</p>
+      <p><strong>CPF:</strong> {{ item.cpf }}</p>
+      <p><strong>Categoria:</strong> {{ item.categoria }}</p>
+    </div>
+  </section>
+
+  <section *ngIf="documentos.identidade.length > 0">
+    <h3>🆔 Identidade(s)</h3>
+    <div class="card" *ngFor="let item of documentos.identidade">
+      <p><strong>Nome:</strong> {{ item.nome }}</p>
+      <p><strong>RG:</strong> {{ item.numero }}</p>
+      <p><strong>Emissão:</strong> {{ item.dataEmissao }}</p>
+    </div>
+  </section>
+
+  <section *ngIf="documentos.saude.length > 0">
+    <h3>❤️ Carteira de Saúde</h3>
+    <div class="card" *ngFor="let item of documentos.saude">
+      <p><strong>Nome:</strong> {{ item.nome }}</p>
+      <p><strong>SUS:</strong> {{ item.numeroSUS }}</p>
+    </div>
+  </section>
+</div>

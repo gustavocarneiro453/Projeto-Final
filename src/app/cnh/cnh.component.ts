@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { DocumentoStorageService } from '../services/documento-storage.service'; // caminho correto
+import { Router } from '@angular/router';
+import { DocumentoStorageService } from '../services/documento-storage.service';
 
 @Component({
   selector: 'app-cnh',
@@ -10,7 +11,10 @@ import { DocumentoStorageService } from '../services/documento-storage.service';
   templateUrl: './cnh.component.html'
 })
 export class CnhComponent {
-  constructor(private storage: DocumentoStorageService) {}
+  constructor(
+    private storage: DocumentoStorageService,
+    private router: Router 
+  ) {}
 
   cnh = {
     nome: '',
@@ -32,6 +36,8 @@ export class CnhComponent {
   enviar() {
     this.storage.salvarDocumento('cnh', this.cnh);
     alert('CNH salva com sucesso!');
-    this.cnh = {} as any; // limpa o formulário
+    this.cnh = {} as any;
+
+    this.router.navigate(['/perfil']);
   }
 }

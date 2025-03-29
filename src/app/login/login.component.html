@@ -1,0 +1,10 @@
+<div class="form-wrapper">
+  <h2>🔐 Login</h2>
+
+  <form (ngSubmit)="entrar()">
+    <input [(ngModel)]="usuario" name="usuario" placeholder="Usuário" required />
+    <input [(ngModel)]="senha" name="senha" type="password" placeholder="Senha" required />
+    <button type="submit">Entrar</button>
+    <p style="color: red;" *ngIf="erro">{{ erro }}</p>
+  </form>
+</div>
