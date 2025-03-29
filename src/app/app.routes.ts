@@ -8,10 +8,12 @@ import { PerfilComponent } from './perfil/perfil.component';
 import { LoginComponent } from './login/login.component';
 
 import { authGuard, adminGuard } from './services/auth.guard';
+import { RegisterComponent } from './register/register.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
   { path: 'cnh', component: CnhComponent, canActivate: [authGuard] },
   { path: 'identidade', component: IdentidadeComponent, canActivate: [authGuard] },
   { path: 'saude', component: SaudeComponent, canActivate: [authGuard] },

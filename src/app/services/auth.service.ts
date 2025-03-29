@@ -1,36 +1,43 @@
 import { Injectable } from '@angular/core';
+import { UsuarioService } from './usuario.service';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  private autenticado = false;
-  private isAdmin = false;
+  private usuarioLogado: any = null;
 
-  login(usuario: string, senha: string): boolean {
-    if (usuario === 'admin' && senha === 'admin123') {
-      this.autenticado = true;
-      this.isAdmin = true;
+  constructor(private usuarioService: UsuarioService) {}
+
+  login(username: string, password: string): boolean {
+    const usuario = this.usuarioService.autenticar(username, password);
+    if (usuario) {
+      this.usuarioLogado = usuario;
+      localStorage.setItem('usuarioAtual', JSON.stringify(usuario));
       return true;
     }
-
-    if (usuario === 'usuario' && senha === 'usuario123') {
-      this.autenticado = true;
-      this.isAdmin = false;
-      return true;
-    }
-
     return false;
   }
 
   logout() {
-    this.autenticado = false;
-    this.isAdmin = false;
+    this.usuarioLogado = null;
+    localStorage.removeItem('usuarioAtual');
   }
 
   estaAutenticado(): boolean {
-    return this.autenticado;
+    return this.getUsuarioAtual() !== null;
   }
 
   ehAdmin(): boolean {
-    return this.isAdmin;
+    const user = this.getUsuarioAtual();
+    return user?.isAdmin || false;
+  }
+
+  getUsuarioAtual() {
+    if (!this.usuarioLogado) {
+      if (typeof window !== 'undefined' && localStorage) {
+        const data = localStorage.getItem('usuarioAtual');
+        this.usuarioLogado = data ? JSON.parse(data) : null;
+      }
+    }
+    return this.usuarioLogado;
   }
 }

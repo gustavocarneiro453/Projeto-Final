@@ -1,35 +1,40 @@
 <div class="documentos-wrapper">
-  <h2>📁 Meus Documentos</h2>
+  <h2>📁 Documentos de Todos os Usuários</h2>
 
-  <div *ngIf="cnhs.length > 0">
-    <h3>🪪 CNHs</h3>
-    <div class="card" *ngFor="let cnh of cnhs">
-      <p><strong>Nome:</strong> {{ cnh.nome }}</p>
-      <p><strong>CPF:</strong> {{ cnh.cpf }}</p>
-      <p><strong>Categoria:</strong> {{ cnh.categoria }}</p>
-      <p><strong>Validade:</strong> {{ cnh.validade }}</p>
+  <div *ngFor="let usuario of usuarios">
+    <h3>👤 {{ usuario.username }} <span *ngIf="usuario.isAdmin">(Admin)</span></h3>
+
+    <!-- CNHs -->
+    <div *ngIf="getCNH(usuario.username).length > 0">
+      <h4>🪪 CNHs</h4>
+      <div class="card" *ngFor="let cnh of getCNH(usuario.username)">
+        <p><strong>Nome:</strong> {{ cnh.nome }}</p>
+        <p><strong>CPF:</strong> {{ cnh.cpf }}</p>
+        <p><strong>Categoria:</strong> {{ cnh.categoria }}</p>
+        <p><strong>Validade:</strong> {{ cnh.validade }}</p>
+      </div>
     </div>
-  </div>
 
-  <div *ngIf="identidades.length > 0">
-    <h3>🆔 Identidades</h3>
-    <div class="card" *ngFor="let rg of identidades">
-      <p><strong>Nome:</strong> {{ rg.nome }}</p>
-      <p><strong>RG:</strong> {{ rg.numero }}</p>
-      <p><strong>Data de Emissão:</strong> {{ rg.dataEmissao }}</p>
+    <!-- Identidades -->
+    <div *ngIf="getIdentidade(usuario.username).length > 0">
+      <h4>🆔 Identidades</h4>
+      <div class="card" *ngFor="let rg of getIdentidade(usuario.username)">
+        <p><strong>Nome:</strong> {{ rg.nome }}</p>
+        <p><strong>RG:</strong> {{ rg.numero }}</p>
+        <p><strong>Data de Emissão:</strong> {{ rg.dataEmissao }}</p>
+      </div>
     </div>
-  </div>
 
-  <div *ngIf="saudes.length > 0">
-    <h3>❤️ Cartões de Saúde</h3>
-    <div class="card" *ngFor="let s of saudes">
-      <p><strong>Nome:</strong> {{ s.nome }}</p>
-      <p><strong>Nº SUS:</strong> {{ s.numeroSUS }}</p>
-      <p><strong>Condições:</strong> {{ s.condicoes }}</p>
+    <!-- Cartão SUS -->
+    <div *ngIf="getSaude(usuario.username).length > 0">
+      <h4>❤️ Cartões de Saúde</h4>
+      <div class="card" *ngFor="let s of getSaude(usuario.username)">
+        <p><strong>Nome:</strong> {{ s.nome }}</p>
+        <p><strong>Nº SUS:</strong> {{ s.numeroSUS }}</p>
+        <p><strong>Condições:</strong> {{ s.condicoes }}</p>
+      </div>
     </div>
-  </div>
 
-  <div *ngIf="cnhs.length === 0 && identidades.length === 0 && saudes.length === 0">
-    <p>📭 Nenhum documento cadastrado ainda.</p>
+    <hr />
   </div>
 </div>

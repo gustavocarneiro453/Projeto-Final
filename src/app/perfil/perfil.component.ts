@@ -10,6 +10,12 @@ import { DocumentoStorageService } from '../services/documento-storage.service';
   styleUrls: ['./perfil.component.css']
 })
 export class PerfilComponent implements OnInit {
+  limparTodos() {
+    this.storage.limparTodosDocumentos();
+    alert('Todos os documentos foram apagados!');
+    window.location.reload();
+  }
+
   documentos: any = {
     cnh: [],
     identidade: [],

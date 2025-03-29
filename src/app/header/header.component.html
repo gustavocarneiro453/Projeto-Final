@@ -1,13 +1,13 @@
 <header class="main-header">
   <div class="logo">📄 <span>DocApp</span></div>
 
-  <nav class="nav-links">
+  <nav class="nav-links" *ngIf="estaLogado()">
     <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Início</a>
     <a routerLink="/cnh" routerLinkActive="active">CNH</a>
     <a routerLink="/identidade" routerLinkActive="active">Identidade</a>
     <a routerLink="/saude" routerLinkActive="active">Saúde</a>
-    <a routerLink="/meus-documentos" routerLinkActive="active">Meus Documentos</a>
+    <a *ngIf="ehAdmin()" routerLink="/meus-documentos" routerLinkActive="active">Meus Documentos</a>
     <a routerLink="/perfil" routerLinkActive="active">Perfil</a>
-    <button (click)="sair()">Sair</button>
+    <a (click)="sair()" class="logout">Sair</a>
   </nav>
 </header>
