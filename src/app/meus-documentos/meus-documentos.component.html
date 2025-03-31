@@ -34,7 +34,14 @@
         <p><strong>Condições:</strong> {{ s.condicoes }}</p>
       </div>
     </div>
+    <div class="card" *ngFor="let cnh of getCNH(usuario.username)">
+      <p><strong>Nome:</strong> {{ cnh.nome }}</p>
+      <p><strong>CPF:</strong> {{ cnh.cpf }}</p>
+      <p><strong>Categoria:</strong> {{ cnh.categoria }}</p>
+      <p><strong>Validade:</strong> {{ cnh.validade }}</p>
 
+      <button (click)="gerarPdfCNH(cnh)">📄 Baixar PDF</button>
+    </div>
     <hr />
   </div>
 </div>
